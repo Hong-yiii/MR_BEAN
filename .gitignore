@@ -14,7 +14,8 @@
 !filtered_usa_points.csv
 !weather_params_at_coodinate
 !faster_reference_data_generate.py
-
+!backend_logic.py
+!app.py
 
 # Include specific directories or files (Example for 'src' folder)
 !src/
