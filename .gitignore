@@ -19,6 +19,7 @@
 !reference_data_set.json
 !most_similar_point.py
 !pull_satelliteData.py
+!frontend.js
 
 # Include specific directories or files (Example for 'src' folder)
 !src/
