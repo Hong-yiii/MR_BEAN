@@ -62,4 +62,5 @@ def weather_params_at_coordinate(lon_input, lat_input):
 
     # now need to output a JSON from the ds.Dataframe
     json_output = results_df.to_json(orient='records')
-    return json_output
+    print (json_output) #for testing
+    return (json_output, results_df)
