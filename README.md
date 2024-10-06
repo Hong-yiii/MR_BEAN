@@ -12,7 +12,7 @@ How to use the application!
     To generate the reference_data, run faster_reference_data_generate.py
     It extracts geographical data from filtered_usa_points.csv, creating reference_data_set.json which documents geographical data with their respecive suggested Soy bean variants
 
-3. Run app.py to run the backend 
-    without UI, can simply call the function from backed to get most similar conditions
+3. Run backend_logic to run the backend 
+    without UI, can simply call the function from backed to get most similar conditions, the code for backend functionality is commented out
 
 4. front end is hosted on wix, JS code is included on the github aswell
