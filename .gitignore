@@ -12,6 +12,7 @@
 !data_output_folder
 !reference_data_set_generation.py
 !filtered_usa_points.csv
+!faster_reference_data_generate.py
 
 
 # Include specific directories or files (Example for 'src' folder)
