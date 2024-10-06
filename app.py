@@ -19,17 +19,13 @@ def handle_data():
             return jsonify({"error": "Latitude and Longitude data required"}), 400
 
         # Extract latitude and longitude from the request
-        latitude = json_data['latitude']
-        longitude = json_data['longitude']
+        latitude = float(json_data['latitude'])
+        longitude = float(json_data['longitude'])
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-    response_data = {
-        "message": "Data received successfully",
-        "latitude": latitude,
-        "longitude": longitude
-    }
+    response_data = best_gmo_strain(latitude, longitude)
 
     return jsonify(response_data), 200
 
