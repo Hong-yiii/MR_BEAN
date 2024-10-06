@@ -68,16 +68,16 @@ def most_similar_point(input_params_pandas_df):
 
     # Define weights for each feature
     weights = np.array([
-        1.0,  # QSTAR_Mean
-        1.0,  # QSTAR_Variance
-        1.0,  # TLML_Mean
-        1.0,  # TLML_Variance
-        1.0,  # PRECTOT_Mean
-        1.0,  # PRECTOT_Variance
-        1.0,  # QLML_Mean
-        1.0,  # QLML_Variance
-        1.0,  # PGENTOT_Mean
-        1.0,  # PGENTOT_Variance
+        10.0,  # QSTAR_Mean
+        10.0,  # QSTAR_Variance
+        3.0,  # TLML_Mean
+        3.0,  # TLML_Variance
+        10.0,  # PRECTOT_Mean
+        10.0,  # PRECTOT_Variance
+        2.0,  # QLML_Mean
+        0.5,  # QLML_Variance
+        5.0,  # PGENTOT_Mean
+        5.0,  # PGENTOT_Variance
         1.0,  # CDQ_Mean
         1.0,  # CDQ_Variance
         1.0,  # CDH_Mean
