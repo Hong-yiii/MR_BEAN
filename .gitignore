@@ -1,3 +1,17 @@
-MERRA2_Files/
-MERRA2_Files_backup/
-MERRA2_20240828testcopy.nc4
+# Ignore everything
+*
+
+# Unignore specific files and directories
+!.gitignore       # Do not ignore the .gitignore file itself
+!README.md        # Include README.md file (example)
+!requirements.txt # Include requirements.txt file (example)
+!Data_testing.ipynb
+!data_transformation_datasci.py
+!datavisualizer.py
+!requirements.txt
+!data_input_folder
+
+
+# Include specific directories or files (Example for 'src' folder)
+!src/
+!src/*.py
