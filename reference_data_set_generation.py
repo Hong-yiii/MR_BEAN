@@ -19,7 +19,7 @@ variables_of_interest = ['QSTAR', 'TLML', 'PRECTOT', 'QLML', 'PGENTOT', 'CDQ', '
 all_results = []
 
 # Iterate through each row in the CSV file (latitude and longitude points)
-for _, row in csv_data.head(5).iterrows():
+for _, row in csv_data.iterrows():
     target_lon = row['Latitude']
     target_lat = row['Longitude']
     data_point = row['SOYBEAN MATURITY GROUP']  # Extract the data point (replace 'data_point' with the actual column name)
@@ -81,6 +81,10 @@ results_df = pd.DataFrame(all_results)
 # Save the DataFrame to a CSV file
 output_csv_path = 'reference_data_set.csv'  # Specify your desired output file name
 results_df.to_csv(output_csv_path, index=False)
+
+# Save the DataFrame to a JSON file
+output_json_path = 'reference_data_set.json'  # Specify your desired output file name
+results_df.to_json(output_json_path, orient='records', lines=True)
 
 # Display the results
 print(results_df)
