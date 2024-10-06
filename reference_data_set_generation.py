@@ -77,6 +77,8 @@ for _, row in csv_data.iterrows():
         result_entry[f'{var}_Variance'] = variance_values[var]
 
     all_results.append(result_entry)
+
+    print(result_entry) #check result at every iter
     
 # Create a DataFrame to store all results
 results_df = pd.DataFrame(all_results)
@@ -84,6 +86,3 @@ results_df = pd.DataFrame(all_results)
 # Save the DataFrame to a JSON file
 output_json_path = os.path.join(output_folder,'reference_data_set.json')  # Specify your desired output file name
 results_df.to_json(output_json_path, orient='records', lines=True)
-
-# Display the results
-print(results_df)
