@@ -16,7 +16,7 @@ How to use the application!
     without UI, can simply call the function from backed to get most similar conditions, the code for backend functionality is commented out
 
 4. front end is hosted on wix, JS code is included on the github aswell
-5. 
+
 ![Homepage](https://github.com/Hong-yiii/MR_BEAN/blob/fc2cbdb89ce27161a5111f2486da8bea85811261/Homepage.png?raw=true)
 ![Output Page](https://github.com/Hong-yiii/MR_BEAN/blob/fc2cbdb89ce27161a5111f2486da8bea85811261/output_page.png?raw=true)
 
