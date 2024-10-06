@@ -1,20 +1,25 @@
 from flask import Flask, request, jsonify
 import json
+from weather_params_at_coordinate import weather_params_at_coordinate  # Import the function
 
 app = Flask(__name__)
 
-# Load JSON from file
-def load_json(filename):
-    with open(filename, 'r') as file:
-        return json.load(file)
-
-# Compare input with first JSON file (hy data)
-def compare_with_first(input_data): #comparison is based on hy function 
-    data1 = load_json('data1.json')
+# Replace the JSON loading with the weather function
+def compare_with_first(input_data):
+    lon_input = input_data.get('longitude')  # Extract longitude from input data
+    lat_input = input_data.get('latitude')   # Extract latitude from input data
+    
+    # Get the weather data for these coordinates
+    weather_data = weather_params_at_coordinate(lon_input, lat_input)
+    
+    # Parse the weather data JSON
+    weather_data_dict = json.loads(weather_data)
+    
     comparison_result = {}
     
+    # Compare the input data with the weather data
     for key, value in input_data.items():
-        if key in data1 and data1[key] == value:
+        if key in weather_data_dict and weather_data_dict[key] == value:
             comparison_result[key] = value
     
     # Save the comparison result to a JSON file
@@ -44,7 +49,7 @@ def compare_with_second():
 def handle_post():
     input_data = request.json
     
-    # Step 1: Compare with first JSON file
+    # Step 1: Compare with weather parameters at given coordinates
     comparison_result = compare_with_first(input_data)
     
     # Step 2: Further compare with second JSON file
@@ -55,3 +60,4 @@ def handle_post():
 
 if __name__ == '__main__':
     app.run(port=5000)
+
