@@ -17,5 +17,5 @@ How to use the application!
 
 4. front end is hosted on wix, JS code is included on the github aswell
 5. 
-![alt text](https://github.com/[Hong-yiii]/[MR_BEAN]/blob/[main]/Homepage.png?raw=true)
-![alt text](https://github.com/[Hong-yiii]/[MR_BEAN]/blob/[main]/output_page.png?raw=true)
+![Homepage](https://github.com/[Hong-yiii]/[MR_BEAN]/blob/[main]/Homepage.png?raw=true)
+![Output Page](https://github.com/[Hong-yiii]/[MR_BEAN]/blob/[main]/output_page.png?raw=true)
