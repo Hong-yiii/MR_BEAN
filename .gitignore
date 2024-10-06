@@ -3,7 +3,6 @@
 
 # Unignore specific files and directories
 !.gitignore       # Do not ignore the .gitignore file itself
-!README.md        # Include README.md file (example)
 !requirements.txt # Include requirements.txt file (example)
 !Data_testing.ipynb
 !data_transformation_datasci.py
