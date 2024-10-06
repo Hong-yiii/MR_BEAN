@@ -11,6 +11,7 @@
 !requirements.txt
 !data_output_folder
 !reference_data_set_generation.py
+!filtered_usa_points.csv
 
 
 # Include specific directories or files (Example for 'src' folder)
