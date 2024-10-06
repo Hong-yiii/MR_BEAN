@@ -2,8 +2,6 @@ import os
 import netCDF4 as nc
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Load the CSV file containing latitude and longitude values
 csv_file_path = 'filtered_usa_points.csv'
@@ -12,17 +10,23 @@ csv_data = pd.read_csv(csv_file_path)
 # Define the folder containing the .nc4 files
 data_folder = './MERRA2_Files'
 
+# Define the output folder for the results
+output_folder = './data_output_folder'
+
 # Define the variables of interest
 variables_of_interest = ['QSTAR', 'TLML', 'PRECTOT', 'QLML', 'PGENTOT', 'CDQ', 'CDH']
 
 # Initialize an empty list to store results for all points
 all_results = []
 
-# Iterate through each row in the CSV file (latitude and longitude points)
-for _, row in csv_data.iterrows():
-    target_lon = row['Latitude']
-    target_lat = row['Longitude']
-    data_point = row['SOYBEAN MATURITY GROUP']  # Extract the data point (replace 'data_point' with the actual column name)
+# Adjust this to change the step e.g. step = 2 for every other row
+step = 2
+
+# Iterate through every second row in the CSV file (latitude and longitude points)
+for index, row in csv_data.iloc[::step].iterrows():
+    target_lon = row['Longitude']  # Make sure column names are correct
+    target_lat = row['Latitude']    # Make sure column names are correct
+    data_point = row['SOYBEAN MATURITY GROUP']  # Extract the data point
 
     # Initialize dictionaries to store accumulated sums and counts for calculating mean and variance
     accumulated_sum = {var: 0 for var in variables_of_interest}
@@ -74,17 +78,12 @@ for _, row in csv_data.iterrows():
         result_entry[f'{var}_Variance'] = variance_values[var]
 
     all_results.append(result_entry)
-    
+
+    print(result_entry)  # Check result at every iteration
+
 # Create a DataFrame to store all results
 results_df = pd.DataFrame(all_results)
 
-# Save the DataFrame to a CSV file
-output_csv_path = 'reference_data_set.csv'  # Specify your desired output file name
-results_df.to_csv(output_csv_path, index=False)
-
 # Save the DataFrame to a JSON file
-output_json_path = 'reference_data_set.json'  # Specify your desired output file name
+output_json_path = os.path.join(output_folder, 'reference_data_set.json')  # Specify your desired output file name
 results_df.to_json(output_json_path, orient='records', lines=True)
-
-# Display the results
-print(results_df)
