@@ -99,3 +99,9 @@ def most_similar_point(input_params_pandas_df):
     # Optionally, display the location of the most similar data point
     closest_location = closest_data_point[['Longitude', 'Latitude']]
     print(f"Location of the most similar data point: {closest_location.to_dict()}")
+
+    return {
+    'Longitude': closest_data_point['Longitude'],
+    'Latitude': closest_data_point['Latitude'],
+    'Soybean Maturity Group': soybean_maturity_group
+    }
