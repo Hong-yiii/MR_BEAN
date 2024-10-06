@@ -16,6 +16,7 @@
 !faster_reference_data_generate.py
 !backend_logic.py
 !app.py
+!reference_data_set.json
 
 # Include specific directories or files (Example for 'src' folder)
 !src/
