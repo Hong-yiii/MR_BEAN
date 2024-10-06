@@ -19,6 +19,8 @@
 !most_similar_point.py
 !pull_satelliteData.py
 !frontend.js
+!Homepage.png
+!output_page.png
 
 # Include specific directories or files (Example for 'src' folder)
 !src/
