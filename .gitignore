@@ -12,7 +12,7 @@
 !data_output_folder
 !reference_data_set_generation.py
 !filtered_usa_points.csv
-!weather_params_at_coodinate
+!weather_params_at_coordinate.py
 !faster_reference_data_generate.py
 !backend_logic.py
 !app.py
