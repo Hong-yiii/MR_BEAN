@@ -10,26 +10,7 @@ def most_similar_point(input_params_pandas_df):
     df = pd.read_json(file_path, lines=True)
     print(df.head())
 
-    # Prepare your new data point, used input_params_json
-    # new_data = {
-    #     'Longitude': 31.896308,
-    #     'Latitude': -86.25,
-    #     'QSTAR_Mean': np.float32(6.22484e-08),
-    #     'QSTAR_Variance': np.float32(5.865151e-13),
-    #     'TLML_Mean': np.float32(227.44887),
-    #     'TLML_Variance': np.float32(100.015625),
-    #     'PRECTOT_Mean': np.float32(2.139298e-06),
-    #     'PRECTOT_Variance': np.float32(1.061351e-11),
-    #     'QLML_Mean': np.float32(0.000114706956),
-    #     'QLML_Variance': np.float32(2.4037654e-08),
-    #     'PGENTOT_Mean': np.float32(2.2311021e-06),
-    #     'PGENTOT_Variance': np.float32(1.0698551e-11),
-    #     'CDQ_Mean': np.float32(0.008105838),
-    #     'CDQ_Variance': np.float32(9.229931e-06),
-    #     'CDH_Mean': np.float32(0.008105838),
-    #     'CDH_Variance': np.float32(9.229931e-06)
-    # }
-
+    # Prepare your new data point
     new_df = input_params_pandas_df
 
     # Define meteorological features (excluding location and target variable)
@@ -42,6 +23,34 @@ def most_similar_point(input_params_pandas_df):
         'CDQ_Mean', 'CDQ_Variance',
         'CDH_Mean', 'CDH_Variance'
     ]
+
+    # **Transform new_df to match meteo_features**
+
+    # Initialize an empty dictionary
+    data = {}
+
+    # Iterate over each row in new_df to populate the dictionary
+    for index, row in new_df.iterrows():
+        var = row['Variable']
+        mean_col = f"{var}_Mean"
+        var_col = f"{var}_Variance"
+        data[mean_col] = row['Mean']
+        data[var_col] = row['Variance']
+
+    # Include Longitude and Latitude if they are in new_df
+    if 'Longitude' in new_df.columns and 'Latitude' in new_df.columns:
+        data['Longitude'] = new_df['Longitude'].values[0]
+        data['Latitude'] = new_df['Latitude'].values[0]
+    else:
+        # Assign NaN if not available
+        data['Longitude'] = np.nan
+        data['Latitude'] = np.nan
+
+    # Create a DataFrame from the dictionary
+    new_df_processed = pd.DataFrame([data])
+
+    # Now new_df_processed has columns matching meteo_features
+    new_df = new_df_processed
 
     # Ensure there are no missing values in the meteorological features
     df = df.dropna(subset=meteo_features)
@@ -83,8 +92,6 @@ def most_similar_point(input_params_pandas_df):
     new_weighted = new_scaled_features * weights
 
     # Compute weighted Euclidean distances
-
-
     meteo_distances = cdist(df_weighted, [new_weighted], metric='euclidean').flatten()
     df['Meteo_Distance'] = meteo_distances
 
@@ -96,12 +103,15 @@ def most_similar_point(input_params_pandas_df):
     soybean_maturity_group = closest_data_point['Soybean Maturity Group']
     print(f"The most similar data point has a Soybean Maturity Group of: {soybean_maturity_group}")
 
-    # Optionally, display the location of the most similar data point
+    # Display the location of the most similar data point
     closest_location = closest_data_point[['Longitude', 'Latitude']]
     print(f"Location of the most similar data point: {closest_location.to_dict()}")
 
-    return {
-    'Longitude': closest_data_point['Longitude'],
-    'Latitude': closest_data_point['Latitude'],
-    'Soybean Maturity Group': soybean_maturity_group
+    # Return longitude, latitude, and soybean maturity group
+    # return closest_data_point['Longitude'], closest_data_point['Latitude'], soybean_maturity_group
+    result = {
+        'Longitude': round(float(closest_data_point['Longitude']), 4),
+        'Latitude': round(float(closest_data_point['Latitude']), 4),
+        'Soybean Maturity Group': float(soybean_maturity_group)
     }
+    return result
