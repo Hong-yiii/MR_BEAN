@@ -12,6 +12,9 @@ csv_data = pd.read_csv(csv_file_path)
 # Define the folder containing the .nc4 files
 data_folder = './MERRA2_Files'
 
+# Define the output folder for the results
+output_folder = './data_output_folder'
+
 # Define the variables of interest
 variables_of_interest = ['QSTAR', 'TLML', 'PRECTOT', 'QLML', 'PGENTOT', 'CDQ', 'CDH']
 
@@ -78,12 +81,8 @@ for _, row in csv_data.iterrows():
 # Create a DataFrame to store all results
 results_df = pd.DataFrame(all_results)
 
-# Save the DataFrame to a CSV file
-output_csv_path = 'reference_data_set.csv'  # Specify your desired output file name
-results_df.to_csv(output_csv_path, index=False)
-
 # Save the DataFrame to a JSON file
-output_json_path = 'reference_data_set.json'  # Specify your desired output file name
+output_json_path = os.path.join(output_folder,'reference_data_set.json')  # Specify your desired output file name
 results_df.to_json(output_json_path, orient='records', lines=True)
 
 # Display the results
