@@ -14,7 +14,6 @@
 !filtered_usa_points.csv
 !weather_params_at_coodinate
 !faster_reference_data_generate.py
-!weather_params_at_coodinate
 
 
 # Include specific directories or files (Example for 'src' folder)
